@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dana Kaget Horor</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.brilio.net/community/community-news/2018/08/10/ce5bf7407a9eb7224cf0874e1b5cd91e/09-image_1533768268_5b6b724c089cc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://cdn.idntimes.com/content-images/community/2021/11/gambar-deep-web-0-89c2614f83929c7e9b0faaddbd1bc1a5-1baec688fdf70fe5f2ba3596bfccec48_600x400.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    #startButton {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to bottom, #4b2e0f, #1e1205);
+      border: 5px solid #3a240c;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 2px black;
+      transition: transform 0.1s;
+    }
+
+    #startButton.shake {
+      animation: shake 0.4s;
+    }
+
+    h1 {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 0 #000;
+      margin: 0;
+    }
+
+    .message {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+      text-shadow: 2px 2px 4px black;
+      padding: 20px;
+      max-width: 80%;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="overlay">
+    <button id="startButton">MULAI GAME</button>
+  </div>
+
+  <h1>AP STORE MEDIA</h1>
+
+  <div class="message">
+    TUNGGU 30 DETIK SECARA OTOMATIS KAMU AKAN DI ARAHKAN KE DALAM PERMAINAN
+  </div>
+
+  <!-- Audio -->
+  <audio id="sambutan" preload="auto">
+    <source src="https://example.com/sambutan.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="backsound" loop preload="auto">
+    <source src="horror-background-music-302076.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="startSound" preload="auto">
+    <source src="door-slam-172171.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const sambutan = document.getElementById('sambutan');
+    const backsound = document.getElementById('backsound');
+    const startButton = document.getElementById('startButton');
+    const overlay = document.getElementById('overlay');
+    const startSound = document.getElementById('startSound');
+
+    function playAllAudio() {
+      sambutan.play().catch(() => {});
+      backsound.play().catch(() => {});
+    }
+
+    document.body.addEventListener('click', playAllAudio, { once: true });
+    document.body.addEventListener('touchstart', playAllAudio, { once: true });
+
+    startButton.addEventListener('click', () => {
+      startButton.classList.add('shake');
+      startSound.play().catch(() => {});
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        startButton.classList.remove('shake');
+
+        setTimeout(() => {
+          window.location.href = "https://www.google.com";
+        }, 30000); // 30 detik
+
+      }, 400);
+    });
+  </script>
+</body>
+</html>
